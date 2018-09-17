@@ -28,3 +28,4 @@ Field: Group/ Average delays/ Maxmimal delays
 * How many plane delays were caused by weather? Please also show the average delays.
 * Which is the best month of a year to fly with minimum delays?
 * List top 5 airports (using IATA airport code) with largest average delay  and show which type of delay occurs most for each of the top 5 airport.
+# Homework 3
