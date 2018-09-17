@@ -1,0 +1,49 @@
+import pandas as pd, numpy as np, sklearn 
+from sklearn.cluster import Kmeans
+
+load=pd.read_csv("./Documents/yellow2.csv")
+
+pu=load.ix[:, 5:7]    #上車經緯度 (column:5-6) 
+do=load.ix[:, 9:11]   #下車經緯度 (column:9-10)
+
+#利用kmeans分成5群
+kmeans_pu=KMeans(n_cluster=5)  
+kmeans_do=KMeans(n_cluster=5)
+kmeans_pu.fit(pu)
+kmeans_do.fit(do)
+#每個點皆會有一個label值 (0-4)
+label_pu=kmeans_pu.labels_
+label_do=kmeans_do.labels_
+
+#計算每個pu cluster中的點個數
+cnt_pu=np.zeros((5,1)) #cnt_pu=[[],[],[],[],[]]
+for i in range(len(load)):
+    if labels_pu[i]==0:
+        cnt_pu[0]+=1
+    elif label_pu[i]==1:
+        cnt_pu[1]+=1
+    elif label_pu[i]==2:
+        cnt_pu[2]+=1
+    elif label_pu[i]==3:
+        cnt_pu[3]+=1
+    else: label_pu[i]==4:
+        cnt_pu[4]+=1
+        
+#計算每個do cluster中的點個數
+cnt_do=np.zeros((5,1)) #cnt_do=[[],[],[],[],[]]
+for i in range(len(load)):
+    if labels_do[i]==0:
+        cnt_do[0]+=1
+    elif label_do[i]==1:
+        cnt_do[1]+=1
+    elif label_do[i]==2:
+        cnt_do[2]+=1
+    elif label_do[i]==3:
+        cnt_do[3]+=1
+    else: label_do[i]==4:
+        cnt_do[4]+=1        
+
+#印出每個上車經緯度的中心點 且可以知道哪個最多       
+print(kmeans_pu.cluster_centers_)
+print(kmeans_pu.cluster_centers_)       
+        
