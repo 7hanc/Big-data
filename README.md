@@ -16,7 +16,7 @@
 >> Dataset
 * Airline on-time performance dataset
 http://stat-computing.org/dataexpo/2009/
-> Questeion
+> Questeion and Answer
 * Compute the average delays and find the maximal delays for each month by using data of all years.  
 `group_month = group Table_csv by Month;`  
 `results = FOREACH group_month GENERATE group, AVG(Table_csv.ArrDelay), MAX(Table_csv.ArrDelay);`  
