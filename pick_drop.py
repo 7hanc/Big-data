@@ -3,6 +3,9 @@ from sklearn.cluster import KMeans
 
 load=pd.read_csv("./Documents/yellow2.csv")
 
+"""
+Q1
+"""
 pu=load.iloc[:, 5:7]    #上車經緯度 (column:5-6) 
 do=load.iloc[:, 9:11]   #下車經緯度 (column:9-10)
 
@@ -45,5 +48,40 @@ for i in range(len(load)):
 
 #印出每個上車經緯度的中心點 且可以知道哪個最多       
 print(kmeans_pu.cluster_centers_)
-print(kmeans_pu.cluster_centers_)       
+print(kmeans_pu.cluster_centers_)    
+
+"""
+Q2
+"""
+pu_time=load["tpep_pickup_datetime"]
+do_time=load["tpep_dropoff_datetime"]
+
+#type:pandas.core.series.Series
+
+print(pu_time.value_counts()) #由多到少排好
+print(do_time.value_counts())
+
+"""
+Q3
+"""
+plo=load["pickup_longitude"]
+dlo=load["dropoff_longitude"]
+pla=load["pickup_latitude"]
+dla=load["dropoff_latitude"]
+a_means=(plo[:]-dlo[:]).mean()
+b_means=(pla[:]-dla[:]).mean()
+
+for i in range(len(load)):
+    if (plo[i]-dlo[i])>a_means or (pla[i]-dla[i])>b_means:
+        trip[i]=1  #long trip
+    else:
+        trip[i]=0  #short trip
+
+#count 屬於long trip的數目
+print(np.count_nonzero(trip))
+
+
+
+
+   
         
