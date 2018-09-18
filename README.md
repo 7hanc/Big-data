@@ -1,6 +1,6 @@
 # Big-data
 
-# Homework 1
+# Homework 1 (Using pandas, kmeans(scikit-learn))
 
 > Goal
 * Analyze NYC Taxi Data by using any data analytic tool or package, and deal with the following problems:
@@ -10,9 +10,9 @@
 * Q1: What regions have most pickups and drop-offs?
 * Q2: When are the peak hours and off-peak hours in taking taxi?
 * Q3: What differences exist between short and long distance trips of taking taxi? (Give as many as you can.)
-# Homework 2 
+# Homework 2 (Using Hadoop Pig Latin)
 > Goal
-* Use Hadoop <font color=red> Pig Latin </font>to analyze the given dataset and answer the following questions. You can use the Hadoop platform provided by NARLabs or use your own machines.
+* Use Hadoop Pig Latin to analyze the given dataset and answer the following questions. You can use the Hadoop platform provided by NARLabs or use your own machines.
 >> Dataset
 * Airline on-time performance dataset
 http://stat-computing.org/dataexpo/2009/
@@ -62,4 +62,3 @@ top 5 airports: PUB, ACK, OTH, CEC, PIR (according to ArrDelay)
 * In CEC, delay occurs most: NASDelay
 *	In PIR, delay occurs most: CarrierDelay
 ***
-# Homework 3
