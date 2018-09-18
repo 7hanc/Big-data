@@ -22,17 +22,44 @@ http://stat-computing.org/dataexpo/2009/
 `results = FOREACH group_month GENERATE group, AVG(Table_csv.ArrDelay), MAX(Table_csv.ArrDelay);`  
 `dump results;`  
 ***
-Field: Group/ Average delays/ Maxmimal delays  
+Answer: Group/ Average delays/ Maxmimal delays  
 ![Alt text](https://i.imgur.com/7QaH2sR.jpg)
 ***
-* How many plane delays were caused by weather? Please also show the average delays.
+* How many plane delays were caused by weather? Please also show the average delays.  
 `group_all = group Table_csv all;`  
 `wea = FOREACH group_all GENERATE COUNT(Table_csv.WeatherDelay), AVG(Table_csv.WeatherDelay);`  
 `dump wea`  
 ***
-Field: Total_data/ Average delays
+Answer: Total_data/ Average delays  
 (1524735, 3.0.90.1044738922)
 ***
-* Which is the best month of a year to fly with minimum delays?
-* List top 5 airports (using IATA airport code) with largest average delay  and show which type of delay occurs most for each of the top 5 airport.
+* Which is the best month of a year to fly with minimum delays?   
+`group_month = group Table_csv by Month;`   
+`min_delay = foreach group_month generate group, MIN(Table_csv.ArrDelay) as min;`   
+`min_delay = order min_delay by min ASC; //由小到大`   
+`min_delay = limit min_delay 2; //顯示筆數`   
+`dump min_delay;`   
+* List top 5 airports (using IATA airport code) with largest average delay  and show which type of delay occurs most for each of the top 5 airport.   
+`group_ori = group Table_csv by Origin;`      
+`ori_avgd = foreach group_ori generate group, 
+AVG(Table_csv.ArrDelay) as arr,
+AVG(Table_csv.DepDelay) as dep,
+AVG(Table_csv.CarrierDelay) as car,
+AVG(Table_csv.WeatherDelay) as wea,
+AVG(Table_csv.NASDelay) as nas,
+AVG(Table_csv.SecurityDelay) as sec,
+AVG(Table_csv.LateAircraftDelay) as lat;`   
+`ori_avgd = order ori_avgd by arr desc; //由大到小`   
+`ori_avgd = limit ori_avgd 5;`   
+`dump ori_avgd;`   
+***
+![Alt text](https://i.imgur.com/GkxNR6s.png)
+Answer:
+top 5 airports: PUB, ACK, OTH, CEC, PIR (according to ArrDelay)
+* In PUB, delay occurs most: ArrDelay
+* In ACK, delay occurs most: NASDelay
+* In OTH, delay occurs most: LateAircraftDelay
+* In CEC, delay occurs most: NASDelay
+*	In PIR, delay occurs most: CarrierDelay
+***
 # Homework 3
