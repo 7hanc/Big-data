@@ -26,6 +26,13 @@ Field: Group/ Average delays/ Maxmimal delays
 ![Alt text](https://i.imgur.com/7QaH2sR.jpg)
 ***
 * How many plane delays were caused by weather? Please also show the average delays.
+`group_all = group Table_csv all;`  
+`wea = FOREACH group_all GENERATE COUNT(Table_csv.WeatherDelay), AVG(Table_csv.WeatherDelay);`  
+`dump wea`  
+***
+Field: Total_data/ Average delays
+(1524735, 3.0.90.1044738922)
+***
 * Which is the best month of a year to fly with minimum delays?
 * List top 5 airports (using IATA airport code) with largest average delay  and show which type of delay occurs most for each of the top 5 airport.
 # Homework 3
