@@ -1,4 +1,4 @@
-# Big-data (hw1+hw2)
+# Big-data (hw2)
 
 # Homework 2 (Using Hadoop Pig Latin)
 > Goal
